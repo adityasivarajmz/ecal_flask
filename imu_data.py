@@ -7,10 +7,12 @@ Clone of the C++ message structure of the same name. This clone will be used for
 
 from ctypes import *
 
+# ts = c_longdouble()
+# frame_id = c_wchar_p()
 
 class Header(Structure):
     _fields_ = [("time", c_longdouble),
-                ("frame_id", c_char_p)]
+                ("frame_id", c_wchar_p)]
     
 # header = Header();
 
@@ -33,8 +35,8 @@ class Vector3(Structure):
 class Imu(Structure):
     _fields_ = [("header", Header),
                 ("orientation", Quaternion),
-                ("orientation_covariance", POINTER(c_double*9)),
+                ("orientation_covariance", (c_double*9)),
                 ("angular_velocity", Vector3),
-                ("angular_velocity_covariance", POINTER(c_double*9)),
+                ("angular_velocity_covariance", (c_double*9)),
                 ("linear_acceleration", Vector3),
-                ("linear_acceleration_covariance", POINTER(c_double*9))]
+                ("linear_acceleration_covariance", (c_double*9))]
